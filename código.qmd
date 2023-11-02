@@ -1,0 +1,14 @@
+---
+title: "TP2"
+author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
+format: html
+editor: visual
+---
+
+## Trabajo Práctico Big Data
+
+```{r}
+library(usethis)
+library(tidyverse)
+library(ggplot2)
+```
