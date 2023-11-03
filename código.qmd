@@ -39,4 +39,4 @@ validate <- slice(bank_train, -filas)
 
 ```
 
-# probando hola
+# probando hola manu boludo
