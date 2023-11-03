@@ -1,3 +1,258 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 17bd290c3ee2d2bf9016e7c052338dab646cf0b9
+---
+title: "TP2"
+author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
+format: html
+editor: visual
+---
+
+## Trabajo Práctico Big Data
+
+### Librerías
+
+```{r}
+library(usethis)
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(nnet)
+library(NeuralNetTools)
+```
+
+### Ajustando modelo deep learning
+
+```{r}
+
+bank_test <- read.delim("C:/Git Projects/BigData_TP2/bank_test.txt")
+bank_train <- read.delim("C:/Git Projects/BigData_TP2/bank_train.txt")
+View(bank_test)
+View(bank_train)
+```
+
+```{r}
+#Separamos en datos para entrenar el modelo y en datos para validarlo
+filas <- createDataPartition(bank_train$y,p = 0.80 )[[1]]
+train <- slice(bank_train, filas)
+validate <- slice(bank_train, -filas)
+```
+
+```{r}
+
+```
+
+<<<<<<< HEAD
+# probando hola
+=======
+---
+title: "TP2"
+author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
+format: html
+editor: visual
+---
+
+## Trabajo Práctico Big Data
+
+### Librerías
+
+```{r}
+library(usethis)
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(nnet)
+library(NeuralNetTools)
+```
+
+### Ajustando modelo deep learning
+
+```{r}
+
+bank_test <- read.delim("C:/Git Projects/BigData_TP2/bank_test.txt")
+bank_train <- read.delim("C:/Git Projects/BigData_TP2/bank_train.txt")
+View(bank_test)
+View(bank_train)
+```
+
+```{r}
+#Separamos en datos para entrenar el modelo y en datos para validarlo
+filas <- createDataPartition(bank_train$y,p = 0.80 )[[1]]
+train <- slice(bank_train, filas)
+validate <- slice(bank_train, -filas)
+```
+
+```{r}
+
+```
+
+# probando hola manu boludo
+>>>>>>> 9466676b89e83e6af58880175f46fac4c83f9a30
+=======
+---
+title: "TP2"
+author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
+format: html
+editor: visual
+---
+
+## Trabajo Práctico Big Data
+
+### Librerías
+
+```{r}
+library(usethis)
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(nnet)
+library(NeuralNetTools)
+```
+
+### Ajustando modelo deep learning
+
+```{r}
+
+bank_test <- read.delim("C:/Git Projects/BigData_TP2/bank_test.txt")
+bank_train <- read.delim("C:/Git Projects/BigData_TP2/bank_train.txt")
+View(bank_test)
+View(bank_train)
+```
+
+```{r}
+#Separamos en datos para entrenar el modelo y en datos para validarlo
+filas <- createDataPartition(bank_train$y,p = 0.80 )[[1]]
+train <- slice(bank_train, filas)
+validate <- slice(bank_train, -filas)
+```
+
+```{r}
+
+```
+>>>>>>> de5596337edb4043cfdeedbd73cf25908d948722
+=======
+# probando OTRA COSA
+=======
+---
+title: "TP2"
+author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
+format: html
+editor: visual
+---
+
+## Trabajo Práctico Big Data
+
+### Librerías
+
+```{r}
+library(usethis)
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(nnet)
+library(NeuralNetTools)
+```
+
+### Ajustando modelo deep learning
+
+```{r}
+
+bank_test <- read.delim("C:/Git Projects/BigData_TP2/bank_test.txt")
+bank_train <- read.delim("C:/Git Projects/BigData_TP2/bank_train.txt")
+View(bank_test)
+View(bank_train)
+```
+
+```{r}
+#Separamos en datos para entrenar el modelo y en datos para validarlo
+filas <- createDataPartition(bank_train$y,p = 0.80 )[[1]]
+train <- slice(bank_train, filas)
+validate <- slice(bank_train, -filas)
+```
+
+```{r}
+
+```
+<<<<<<< HEAD
+
+# probando hola manu boludo fvkfn
+>>>>>>> 9466676b89e83e6af58880175f46fac4c83f9a30
+=======
+>>>>>>> de5596337edb4043cfdeedbd73cf25908d948722
+>>>>>>> 17bd290c3ee2d2bf9016e7c052338dab646cf0b9
+=======
+---
+title: "TP2"
+author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
+format: html
+editor: visual
+---
+
+## Trabajo Práctico Big Data
+
+### Librerías
+
+```{r}
+library(usethis)
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(nnet)
+library(NeuralNetTools)
+```
+
+### Ajustando modelo deep learning
+
+```{r}
+
+bank_test <- read.delim("C:/Git Projects/BigData_TP2/bank_test.txt")
+bank_train <- read.delim("C:/Git Projects/BigData_TP2/bank_train.txt")
+View(bank_test)
+View(bank_train)
+```
+
+```{r}
+#Separamos en datos para entrenar el modelo y en datos para validarlo
+filas <- createDataPartition(bank_train$y,p = 0.80 )[[1]]
+train <- slice(bank_train, filas)
+validate <- slice(bank_train, -filas)
+```
+
+```{r}
+
+```
+>>>>>>> b48652a7124e2f56477a8d1ba79e2c26b784a62a
+
+
+```{r}
+install.packages("caret")
+library(caret)
+library(ggplot2)
+library(lattice)
+library(tidyverse)
+install.packages("dplyr")
+library(dplyr)
+
+set.seed(2013)
+training <- bank_train
+testing <- bank_test
+
+ajuste <- train(
+  y ~ ., 
+  data = training, 
+  method = "rf", 
+  ntree = 250,
+  tuneGrid = expand.grid(mtry = 1:10)
+)
+
+ajuste
+
+```
+=======
 ---
 title: "TP2"
 author: "Capucchio Tomás, Milito Manuel y Padoan Renzo"
@@ -47,3 +302,4 @@ rn <- train(y ~ .,
             maxit = 200,
             trace = FALSE)
 ```
+>>>>>>> 9b1022330fed795cee5ca5a75e969baa225c4e0b
