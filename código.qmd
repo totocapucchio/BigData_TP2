@@ -38,3 +38,5 @@ validate <- slice(bank_train, -filas)
 ```{r}
 
 ```
+
+# probando
