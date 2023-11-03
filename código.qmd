@@ -82,6 +82,9 @@ validate <- slice(bank_train, -filas)
 ```{r}
 
 ```
+<<<<<<< HEAD
 
 # probando hola manu boludo
 >>>>>>> 9466676b89e83e6af58880175f46fac4c83f9a30
+=======
+>>>>>>> de5596337edb4043cfdeedbd73cf25908d948722
