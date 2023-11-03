@@ -44,11 +44,11 @@ bank_test$predicciones <- prediccionesdl
 
 "Arboles de decision"
 
-set.seed(2013)
+set.seed(2023)
 
 ajuste <- train(
   y ~ ., 
-  data = training, 
+  data = train, 
   method = "rf", 
   ntree = 10,
   tuneGrid = expand.grid(mtry = 1:10)
@@ -56,13 +56,14 @@ ajuste <- train(
 
 ajuste
 
-varImp(ajuste)
+confusionMatrix(
+  as.factor(validate$y), 
+  predict(ajuste, newdata = validate)
+)
 
-predict(ajuste, newdata = bank_test)
+predicciones_rf_validate <- predict(ajuste, newdata = validate)
 
-bank_test$predicciones <- predict(ajuste, newdata = bank_test)
+validate$predicciones <- predicciones_rf_validate
 
-tabla_frecuencias <- table(Predicciones = bank_test$predicciones)
 
-print(tabla_frecuencias)
 
