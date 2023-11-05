@@ -65,5 +65,34 @@ predicciones_rf_validate <- predict(ajuste, newdata = validate)
 
 validate$predicciones <- predicciones_rf_validate
 
+"KNN"
+# Vectores numéricos para guardar las medidas de error (una para cada k candidato)
+train_error <- NULL
+test_error <- NULL
+
+# Valores para K: elegimos unos pocos para ejemplificar
+candidatos <- c(5, 10, 25, 40, 60, 70) 
+
+# Con una estructura iterativa repetimos el proceso para cada valor de k a probar
+for (k in candidatos) {
+  
+  
+  
+  algoritmo <- train(
+    y ~ .,
+    data = train, 
+    method = "knn",
+    tuneGrid = data.frame(k), 
+    preProcess = c("center", "scale"))
+  
+  # Predicción en train y train error
+  predicciones_train <- predict(algoritmo, newdata = train)
+  (train_error <- mean(train$y != predicciones_train))
+  
+  predicciones_test <- predict(algoritmo, newdata = validate)
+  (test_error <- mean(validate$y != predicciones_test))}
+
+(resultados <- data.frame(k = candidatos, train_error, test_error))
+
 
 
