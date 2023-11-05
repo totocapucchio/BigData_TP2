@@ -65,39 +65,37 @@ predicciones_rf_validate <- predict(ajuste, newdata = validate)
 
 validate$predicciones <- predicciones_rf_validate
 
-"KNN"
 # Vectores numéricos para guardar las medidas de error (una para cada k candidato)
 train_error <- NULL
 test_error <- NULL
 
-# Ajusta un modelo KNN utilizando train() de caret
-vecinos <- train (y ~ ., data = bank_train, method = "knn",
-                  preProcess = c("center", "scale"))
-vecinos
+# Valores para K: elegimos unos pocos para ejemplificar
+candidatos <- c(5, 10, 25, 40, 60, 70) 
 
-# Entrenar
-mod_knn <- train(
-  y ~ .,
-  data = banco_train,
-  method = "knn",
-  tuneGrid = data.frame(k = c(5, 10, 15)), # ACÁ PONER LOS VALORES QUE USTEDES QUIEREN PROBAR
-  preProcess = c("center", "scale"),       # ESTANDARIZAR LAS VARIABLES
-  trControl = trainControl(method = "cv" , number = 10)  # PEDIR QUE SE USE CV CON 10 FOLDS PARA VALIDAR
-)
+# Con una estructura iterativa repetimos el proceso para cada valor de k a probar
+for (k in candidatos) {
+  
+  
+  
+  algoritmo <- train(
+    y ~ .,
+    data = train, 
+    method = "knn",
+    tuneGrid = data.frame(k), 
+    preProcess = c("center", "scale"))
+  
+  # Predicción en train y train error
+  predicciones_train <- predict(algoritmo, newdata = train)
+  (train_error <- mean(train$y != predicciones_train))
+  
+  predicciones_test <- predict(algoritmo, newdata = validate)
+  (test_error <- mean(validate$y != predicciones_test))}
 
-# resultados
-plot(mod_knn)
-mod_knn$bestTune
-mod_knn$finalModel
-mod_knn$results
+(resultados <- data.frame(k = candidatos, train_error, test_error))
 
-# train error
-pred_train_knn <- predict(mod_knn, banco_train)
-confusionMatrix(pred_train_knn, factor(banco_train$y), positive = "yes")
+predicciones_knn_validate <- predict(algoritmo, newdata = validate)
 
-# error de test (ya que veo que se dejaron por separado una parte de los datos train y no la usaron)
-pred_test_knn <- predict(mod_knn, banco_test)
-confusionMatrix(pred_test_knn, factor(banco_test$y), positive = "yes")
+validate$predicciones <- predicciones_knn_validate
 
-
-
+confusionMatrix(as.factor(validate$y), 
+                predict(algoritmo, newdata = validate))
