@@ -26,23 +26,23 @@ dl <- train(y ~ .,
             data = train,
             method = "nnet",
             tuneGrid = grilla,
-            trControl = trainControl(method = "cv", number = 5), 
+            trControl = trainControl(method = "cv", number = 5, classProbs = TRUE),#Cross validation 
             maxit = 200,
             trace = FALSE)
 
-dl
 
 confusionMatrix(
   as.factor(train$y), 
-  predicciones_train <- predict(dl, newdata = train, type = "raw")
+  predicciones_train <- predict(dl, newdata = train),positive = "yes"
 )
 
 #Predecimos los valores para los datos de validación y vemos su desempeño
 
 confusionMatrix(
   as.factor(validate$y), 
-  predicciones_validate <- predict(dl, newdata = validate, type = "raw")
+  predicciones_validate <- predict(dl, newdata = validate), positive = "yes"
 )
+
 
 # Generamos las predicciones para test
 
@@ -59,6 +59,7 @@ grupo4 <- bank_test["y"]
 #Exportar los datos con solo la columna y
 
 write.table(grupo4, "grupo4.txt", sep = "\t", row.names = FALSE)
+
 
 "Arboles de decision"
 
@@ -90,7 +91,7 @@ train_error <- NULL
 test_error <- NULL
 
 # Valores para K: elegimos unos pocos para ejemplificar
-candidatos <- c(5, 10, 25, 40, 60, 70) 
+candidatos <- c(5, 7, 10) 
 
 # Con una estructura iterativa repetimos el proceso para cada valor de k a probar
 for (k in candidatos) {
@@ -114,6 +115,12 @@ for (k in candidatos) {
 predicciones_knn_validate <- predict(algoritmo, newdata = validate)
 
 validate$predicciones <- predicciones_knn_validate
+
+
+# desempeño
+algoritmo$bestTune
+algoritmo$finalModel
+algoritmo$results
 
 confusionMatrix(as.factor(validate$y), 
                 predict(algoritmo, newdata = validate))
